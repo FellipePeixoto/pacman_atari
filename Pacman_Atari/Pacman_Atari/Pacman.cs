@@ -19,7 +19,7 @@ namespace Pacman_Atari
         private KeyboardState currentKeyBoardState;
         private Animation walkAnimation;
         private int distance = 1;
-        private int size = 16;
+        private int size = 15;
         private Vector2 newPos;
         private Vector2 diff = new Vector2(15, 15);
         public static int score = 0;
@@ -99,8 +99,9 @@ namespace Pacman_Atari
         {
             if (isAlive)
             {
+                spriteBatch.Draw(debugTexture, rectangle, Color.Red);
                 walkAnimation.Draw(spriteBatch, center, true);
-                spriteBatch.Draw(debugTexture, centerRec, Color.Red);
+                //spriteBatch.Draw(debugTexture, centerRec, Color.Red);
             }
         }
 

@@ -36,7 +36,7 @@ namespace Pacman_Atari
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
 
-            scoreShow = new Vector2(20, screenHeight - 27);
+            scoreShow = new Vector2(screenWidth - 100, screenHeight - 27);
         }
 
         /// <summary>
