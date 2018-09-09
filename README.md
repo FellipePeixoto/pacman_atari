@@ -1,3 +1,3 @@
 # pacman_atari
 
-Some studies on dead framework u.u
+Some studies on dead framework (XNA) u.u
