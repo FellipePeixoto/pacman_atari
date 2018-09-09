@@ -1,0 +1,6 @@
+Content\Sprites\pacman_animation.xnb
+Content\Sprites\ghost_green_animation.xnb
+Content\Sprites\ghost_lemonade_animation.xnb
+Content\Sprites\ghost_white-green_animation.xnb
+Content\Sprites\ghost_yellow_animation.xnb
+Content\Sprites\block_tile.xnb

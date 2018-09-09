@@ -1,0 +1,1 @@
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_AtariContent\obj\x86\Debug\Pacman_AtariContent.contentprojResolveAssemblyReference.cache

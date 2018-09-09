@@ -1,0 +1,12 @@
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Pacman_Atari.exe
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Pacman_Atari.pdb
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\obj\x86\Debug\Pacman_Atari.csprojResolveAssemblyReference.cache
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\obj\x86\Debug\Pacman_Atari.exe
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\obj\x86\Debug\Pacman_Atari.pdb
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\pacman_animation.xnb
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\ghost_green_animation.xnb
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\ghost_lemonade_animation.xnb
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\ghost_white-green_animation.xnb
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\ghost_yellow_animation.xnb
+C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\block_tile.xnb

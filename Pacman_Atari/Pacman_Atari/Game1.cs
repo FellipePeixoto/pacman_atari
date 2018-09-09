@@ -1,3 +1,4 @@
+#region using
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Media; 
+#endregion
 
 namespace Pacman_Atari
 {
@@ -18,6 +20,8 @@ namespace Pacman_Atari
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Color bgColor = new Color(0,0,0);
 
         public Game1()
         {
@@ -35,6 +39,7 @@ namespace Pacman_Atari
         {
             // TODO: Add your initialization logic here
 
+            Items.Initialize();
             base.Initialize();
         }
 
@@ -44,6 +49,16 @@ namespace Pacman_Atari
         /// </summary>
         protected override void LoadContent()
         {
+            foreach (Object i in Items.objList)
+            {
+                i.LoadContent(Content);
+            }
+
+            foreach (ObjectStatic i in Items.objMovList)
+            {
+                i.LoadContent(Content);
+            }
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -66,11 +81,17 @@ namespace Pacman_Atari
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
             // TODO: Add your update logic here
+
+            foreach (ObjectStatic i in Items.objMovList)
+            {
+                i.Update(gameTime);
+            }
+
+            foreach (Object i in Items.objList)
+            {
+                i.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -81,11 +102,24 @@ namespace Pacman_Atari
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            GraphicsDevice.Clear(bgColor);
+
+            spriteBatch.Begin();
 
             // TODO: Add your drawing code here
 
-            base.Draw(gameTime);
+            foreach (ObjectStatic i in Items.objMovList)
+            {
+                i.Draw(spriteBatch);
+            }
+
+            foreach (Object i in Items.objList)
+            {
+                i.Draw(spriteBatch);
+            }
+
+            spriteBatch.End();
         }
     }
 }
