@@ -2,13 +2,22 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Sprites\pacman_animation.png</Source>
-      <Name>Sprites\pacman_animation</Name>
+      <Source>Sprites\block_tile.png</Source>
+      <Name>Sprites\block_tile</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\pacman_animation.xnb</Output>
-      <Time>2018-09-08T13:12:33.5922667-03:00</Time>
+      <Output>C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\block_tile.xnb</Output>
+      <Time>2018-09-08T18:51:33.2766528-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\debug.png</Source>
+      <Name>Sprites\debug</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\debug.xnb</Output>
+      <Time>2018-09-08T18:51:33.2766528-03:00</Time>
     </Item>
     <Item>
       <Source>Sprites\ghost_green_animation.png</Source>
@@ -47,13 +56,31 @@
       <Time>2018-09-08T12:50:09.4983539-03:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\block_tile.png</Source>
-      <Name>Sprites\block_tile</Name>
+      <Source>Sprites\pacman_animation.png</Source>
+      <Name>Sprites\pacman_animation</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\block_tile.xnb</Output>
-      <Time>2018-09-08T18:51:33.2766528-03:00</Time>
+      <Output>C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\pacman_animation.xnb</Output>
+      <Time>2018-09-08T13:12:33.5922667-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\pill_tile.png</Source>
+      <Name>Sprites\pill_tile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Sprites\pill_tile.xnb</Output>
+      <Time>2018-09-09T15:53:56.9335786-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\SpriteFont.spritefont</Source>
+      <Name>Fonts\SpriteFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\felli\Documents\faculdade\prog3D\pacman_atari\Pacman_Atari\Pacman_Atari\bin\x86\Debug\Content\Fonts\SpriteFont.xnb</Output>
+      <Time>2018-09-09T17:48:18.2656902-03:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

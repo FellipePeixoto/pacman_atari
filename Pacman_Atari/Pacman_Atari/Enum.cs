@@ -14,7 +14,7 @@ namespace Pacman_Atari
 
         public enum ObjectType 
         { 
-            alive, dot, fruit, block, none
+            alive, dot, pill, fruit, block, none, ghost
         }
     }
 }

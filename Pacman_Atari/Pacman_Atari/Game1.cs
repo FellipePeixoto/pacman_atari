@@ -20,9 +20,12 @@ namespace Pacman_Atari
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private Vector2 scoreShow;
 
         public static readonly int screenWidth = 320;
-        public static readonly int screenHeight = 164;
+        public static readonly int screenHeight = 164 + 30;
+
+        SpriteFont spriteFont;
 
         Color bgColor = new Color(45, 50, 184);
 
@@ -32,6 +35,8 @@ namespace Pacman_Atari
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
+
+            scoreShow = new Vector2(20, screenHeight - 27);
         }
 
         /// <summary>
@@ -54,6 +59,8 @@ namespace Pacman_Atari
         /// </summary>
         protected override void LoadContent()
         {
+            spriteFont = Content.Load<SpriteFont>("Fonts/SpriteFont");
+
             foreach (Object i in Items.objList)
             {
                 i.LoadContent(Content);
@@ -88,11 +95,6 @@ namespace Pacman_Atari
         {
             // TODO: Add your update logic here
 
-            foreach (ObjectStatic i in Items.objMovList)
-            {
-                i.Update(gameTime);
-            }
-
             foreach (Object i in Items.objList)
             {
                 i.Update(gameTime);
@@ -116,13 +118,16 @@ namespace Pacman_Atari
 
             foreach (ObjectStatic i in Items.objMovList)
             {
-                i.Draw(spriteBatch);
+                if (i!=null)
+                    i.Draw(spriteBatch);
             }
 
             foreach (Object i in Items.objList)
             {
                 i.Draw(spriteBatch);
             }
+
+            spriteBatch.DrawString(spriteFont, Pacman.score.ToString(), scoreShow, Color.Red);
 
             spriteBatch.End();
         }

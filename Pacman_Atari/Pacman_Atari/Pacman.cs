@@ -19,18 +19,25 @@ namespace Pacman_Atari
         private KeyboardState currentKeyBoardState;
         private Animation walkAnimation;
         private int distance = 1;
-        private int size = 14;
+        private int size = 16;
+        private Vector2 newPos;
+        private Vector2 diff = new Vector2(15, 15);
+        public static int score = 0;
+        private Rectangle centerRec;
 
-        public Pacman(Vector2 position, float speed, String textureName)
+        public Pacman(Vector2 position, float speed, String textureName, String debugTextureName)
         {
             this.position = position;
             this.speed = speed;
             this.scale = 1;
             this.textureName = textureName;
+            this.debugTextureName = debugTextureName;
 
             this.isAlive = true;
 
             walkAnimation = new Animation();
+
+            score = 0;
         }
 
         public override void LoadContent(ContentManager content)
@@ -48,8 +55,7 @@ namespace Pacman_Atari
                 return;
 
             currentKeyBoardState = Keyboard.GetState();
-
-            Vector2 newPos = position - new Vector2(14,14);
+            newPos = position - diff;
 
             if (currentKeyBoardState.IsKeyDown(Keys.Up))
             {
@@ -79,6 +85,13 @@ namespace Pacman_Atari
             walkAnimation.position = position;
             walkAnimation.Update(gameTime);
 
+            centerRec = new Rectangle((int)newPos.X, (int)newPos.Y, 16, 16);
+
+            if (CheckCollision(Enum.ObjectType.dot, true))
+                score++;
+            if (CheckCollision(Enum.ObjectType.pill, true))
+                score += 5;
+
             base.Update(gameTime);
         }
 
@@ -87,18 +100,42 @@ namespace Pacman_Atari
             if (isAlive)
             {
                 walkAnimation.Draw(spriteBatch, center, true);
-                spriteBatch.Draw(texture,rectangle,Color.Red);
+                spriteBatch.Draw(debugTexture, centerRec, Color.Red);
             }
         }
 
+        /// <summary>
+        /// Checa a colisão contra objeto solido
+        /// </summary>
+        /// <returns></returns>
         private bool CheckCollision()
         {
             foreach (ObjectStatic i in Items.objMovList)
             {
-                if (this.rectangle.Intersects(i.rectangle) && i.type == Enum.ObjectType.block)
+                if (i != null && this.rectangle.Intersects(i.rectangle) &&
+                    (i.type == Enum.ObjectType.block || i.type == Enum.ObjectType.ghost))
                     return true;
             }
+            return false;
+        }
 
+        /// <summary>
+        /// Checar colisão contra objeto especifico
+        /// </summary>
+        /// <param name="type">Enumerador dos tipos de entidades no mapa</param>
+        /// <returns>Verdadeiro caso o há colisão</returns>
+        private bool CheckCollision(Enum.ObjectType type, bool destroy)
+        {
+            foreach (ObjectStatic i in Items.objMovList)
+            {
+                if (i != null && centerRec.Intersects(i.rectangle) &&
+                    (i.type == type))
+                {
+                    if (destroy)
+                        Items.objMovList[Items.objMovList.IndexOf(i)] = null;
+                    return true;
+                }
+            }
             return false;
         }
     }

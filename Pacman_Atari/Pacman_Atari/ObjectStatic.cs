@@ -36,7 +36,7 @@ namespace Pacman_Atari
 
         public virtual void Update(GameTime gameTime)
         {
-
+            
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

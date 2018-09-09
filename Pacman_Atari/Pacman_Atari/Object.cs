@@ -29,24 +29,30 @@ namespace Pacman_Atari
 
         protected Rectangle rectangle;
 
-        protected bool isAlive = false; 
+        protected bool isAlive = false;
+
+        protected String debugTextureName = String.Empty;
+
+        protected Texture2D debugTexture;
 
         #region XNA framework methods
         public virtual void LoadContent(ContentManager content)
         {
             // load da textura
             this.texture = content.Load<Texture2D>("Sprites/" + this.textureName);
+            if (debugTextureName != String.Empty)
+                this.debugTexture = content.Load<Texture2D>("Sprites/" + this.debugTextureName);
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, Color.White);
-        } 
+        }
         #endregion
     }
 }
