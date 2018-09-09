@@ -27,15 +27,7 @@ namespace Pacman_Atari
 
         protected Vector2 scale;
 
-        public ObjectStatic(Vector2 position, Vector2 scale, String textureName, Enum.ObjectType type)
-        {
-            this.position = position;
-            this.scale = scale;
-            this.type = type;
-            this.textureName = textureName;
-
-            rectangle = new Rectangle((int)position.X, (int)position.Y, (int)scale.X, (int)scale.Y);
-        }
+        protected Color color;
 
         public virtual void LoadContent(ContentManager content)
         {
@@ -50,7 +42,7 @@ namespace Pacman_Atari
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(this.texture, position, Color.White);
-            spriteBatch.Draw(this.texture,rectangle,Color.White);
+            spriteBatch.Draw(this.texture, rectangle, color);
         }
     }
 }

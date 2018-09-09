@@ -13,16 +13,16 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Pacman_Atari
 {
-    class Tile : ObjectStatic
+    class Dot:ObjectStatic
     {
-        public Tile(Vector2 position, Vector2 scale, String textureName, Color color) 
+        public Dot(Vector2 position, String textureName, Color color)
         {
             this.position = position;
-            this.scale = scale;
             this.textureName = textureName;
             this.color = color;
 
-            this.type = Enum.ObjectType.block;
+            type = Enum.ObjectType.dot;
+            this.scale = new Vector2(8, 2);
             rectangle = new Rectangle((int)position.X, (int)position.Y, (int)scale.X, (int)scale.Y);
         }
     }

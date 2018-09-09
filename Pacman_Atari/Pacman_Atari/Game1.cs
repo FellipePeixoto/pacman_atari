@@ -21,12 +21,17 @@ namespace Pacman_Atari
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Color bgColor = new Color(0,0,0);
+        public static readonly int screenWidth = 320;
+        public static readonly int screenHeight = 164;
+
+        Color bgColor = new Color(45, 50, 184);
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = screenWidth;
+            graphics.PreferredBackBufferHeight = screenHeight;
         }
 
         /// <summary>

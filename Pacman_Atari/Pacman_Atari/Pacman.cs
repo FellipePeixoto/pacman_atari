@@ -18,6 +18,8 @@ namespace Pacman_Atari
     {
         private KeyboardState currentKeyBoardState;
         private Animation walkAnimation;
+        private int distance = 1;
+        private int size = 14;
 
         public Pacman(Vector2 position, float speed, String textureName)
         {
@@ -47,27 +49,29 @@ namespace Pacman_Atari
 
             currentKeyBoardState = Keyboard.GetState();
 
+            Vector2 newPos = position - new Vector2(14,14);
+
             if (currentKeyBoardState.IsKeyDown(Keys.Up))
             {
-                rectangle = new Rectangle((int)position.X, (int)position.Y - 2, 16, 2);
+                rectangle = new Rectangle((int)newPos.X, (int)newPos.Y - distance, size, distance);
                 if (!CheckCollision())
                     position.Y -= speed;
             }
             else if (currentKeyBoardState.IsKeyDown(Keys.Down))
             {
-                rectangle = new Rectangle((int)position.X, (int)position.Y + 2, 16, 2);
+                rectangle = new Rectangle((int)newPos.X, (int)newPos.Y + distance + size, size, distance);
                 if (!CheckCollision())
                     position.Y += speed;
             }
             else if (currentKeyBoardState.IsKeyDown(Keys.Right))
             {
-                rectangle = new Rectangle((int)position.X + 2, (int)position.Y, 2, 16);
+                rectangle = new Rectangle((int)newPos.X + distance + size, (int)newPos.Y, distance, size);
                 if (!CheckCollision())
                     position.X += speed;
             }
             else if (currentKeyBoardState.IsKeyDown(Keys.Left))
             {
-                rectangle = new Rectangle((int)position.X - 2, (int)position.Y, 2, 16);
+                rectangle = new Rectangle((int)newPos.X - distance, (int)newPos.Y, distance, size);
                 if (!CheckCollision())
                     position.X -= speed;
             }
@@ -83,6 +87,7 @@ namespace Pacman_Atari
             if (isAlive)
             {
                 walkAnimation.Draw(spriteBatch, center, true);
+                spriteBatch.Draw(texture,rectangle,Color.Red);
             }
         }
 
@@ -90,7 +95,7 @@ namespace Pacman_Atari
         {
             foreach (ObjectStatic i in Items.objMovList)
             {
-                if (this.rectangle.Intersects(i.rectangle))
+                if (this.rectangle.Intersects(i.rectangle) && i.type == Enum.ObjectType.block)
                     return true;
             }
 
