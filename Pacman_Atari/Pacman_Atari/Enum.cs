@@ -9,7 +9,7 @@ namespace Pacman_Atari
     {
         public enum Direction
         {
-            up, right, down, left
+            up, right, down, left, stopped
         }
 
         public enum ObjectType 

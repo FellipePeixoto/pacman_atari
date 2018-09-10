@@ -27,7 +27,7 @@ namespace Pacman_Atari
 
         protected float speed;
 
-        protected Rectangle rectangle;
+        protected Rectangle colliderDetection;
 
         protected bool isAlive = false;
 

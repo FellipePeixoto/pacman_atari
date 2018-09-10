@@ -23,7 +23,9 @@ namespace Pacman_Atari
         private Vector2 newPos;
         private Vector2 diff = new Vector2(15, 15);
         public static int score = 0;
-        private Rectangle centerRec;
+        private Rectangle pacmanCollider;
+        private Enum.Direction dir;
+        private Enum.Direction nextDir;
 
         public Pacman(Vector2 position, float speed, String textureName, String debugTextureName)
         {
@@ -34,6 +36,9 @@ namespace Pacman_Atari
             this.debugTextureName = debugTextureName;
 
             this.isAlive = true;
+
+            dir = Enum.Direction.stopped;
+            nextDir = Enum.Direction.stopped;
 
             walkAnimation = new Animation();
 
@@ -57,35 +62,78 @@ namespace Pacman_Atari
             currentKeyBoardState = Keyboard.GetState();
             newPos = position - diff;
 
+            #region movement
             if (currentKeyBoardState.IsKeyDown(Keys.Up))
             {
-                rectangle = new Rectangle((int)newPos.X, (int)newPos.Y - distance, size, distance);
+                colliderDetection = new Rectangle((int)newPos.X, (int)newPos.Y - distance, size, distance);
                 if (!CheckCollision())
-                    position.Y -= speed;
+                    dir = Enum.Direction.up;
+                else
+                    nextDir = Enum.Direction.up;
             }
             else if (currentKeyBoardState.IsKeyDown(Keys.Down))
             {
-                rectangle = new Rectangle((int)newPos.X, (int)newPos.Y + distance + size, size, distance);
+                colliderDetection = new Rectangle((int)newPos.X, (int)newPos.Y + distance + size, size, distance);
                 if (!CheckCollision())
-                    position.Y += speed;
+                    dir = Enum.Direction.down;
+                else
+                    nextDir = Enum.Direction.down;
             }
             else if (currentKeyBoardState.IsKeyDown(Keys.Right))
             {
-                rectangle = new Rectangle((int)newPos.X + distance + size, (int)newPos.Y, distance, size);
+                colliderDetection = new Rectangle((int)newPos.X + distance + size, (int)newPos.Y, distance, size);
                 if (!CheckCollision())
-                    position.X += speed;
+                    dir = Enum.Direction.right;
+                else
+                    nextDir = Enum.Direction.right;
             }
             else if (currentKeyBoardState.IsKeyDown(Keys.Left))
             {
-                rectangle = new Rectangle((int)newPos.X - distance, (int)newPos.Y, distance, size);
+                colliderDetection = new Rectangle((int)newPos.X - distance, (int)newPos.Y, distance, size);
                 if (!CheckCollision())
-                    position.X -= speed;
+                    dir = Enum.Direction.left;
+                else
+                    nextDir = Enum.Direction.left;
             }
+
+            switch (dir)
+            {
+                case Enum.Direction.up:
+                    colliderDetection = new Rectangle((int)newPos.X, (int)newPos.Y - distance, size, distance);
+                    if (!CheckCollision())
+                        position.Y -= speed;
+                    break;
+
+                case Enum.Direction.right:
+                    colliderDetection = new Rectangle((int)newPos.X + distance + size, (int)newPos.Y, distance, size);
+                    if (!CheckCollision())
+                        position.X += speed;
+                    break;
+
+                case Enum.Direction.down:
+                    colliderDetection = new Rectangle((int)newPos.X, (int)newPos.Y + distance + size, size, distance);
+                    if (!CheckCollision())
+                        position.Y += speed;
+                    break;
+
+                case Enum.Direction.left:
+                    colliderDetection = new Rectangle((int)newPos.X - distance, (int)newPos.Y, distance, size);
+                    if (!CheckCollision())
+                        position.X -= speed;
+                    break;
+            } 
+            #endregion
+
+            if (position.Y < 0)
+                position = new Vector2(((int)Game1.screenWidth / 2) + 7, (int)Game1.screenHeight-20);
+
+            if (position.Y > Game1.screenHeight - 20)
+                position = new Vector2(((int)Game1.screenWidth / 2) + 7, 0);
 
             walkAnimation.position = position;
             walkAnimation.Update(gameTime);
 
-            centerRec = new Rectangle((int)newPos.X, (int)newPos.Y, 16, 16);
+            pacmanCollider = new Rectangle((int)newPos.X + 4, (int)newPos.Y + 4, 7, 7);
 
             if (CheckCollision(Enum.ObjectType.dot, true))
                 score++;
@@ -99,9 +147,7 @@ namespace Pacman_Atari
         {
             if (isAlive)
             {
-                spriteBatch.Draw(debugTexture, rectangle, Color.Red);
                 walkAnimation.Draw(spriteBatch, center, true);
-                //spriteBatch.Draw(debugTexture, centerRec, Color.Red);
             }
         }
 
@@ -113,7 +159,7 @@ namespace Pacman_Atari
         {
             foreach (ObjectStatic i in Items.objMovList)
             {
-                if (i != null && this.rectangle.Intersects(i.rectangle) &&
+                if (i != null && colliderDetection.Intersects(i.rectangle) &&
                     (i.type == Enum.ObjectType.block || i.type == Enum.ObjectType.ghost))
                     return true;
             }
@@ -129,7 +175,7 @@ namespace Pacman_Atari
         {
             foreach (ObjectStatic i in Items.objMovList)
             {
-                if (i != null && centerRec.Intersects(i.rectangle) &&
+                if (i != null && pacmanCollider.Intersects(i.rectangle) &&
                     (i.type == type))
                 {
                     if (destroy)
